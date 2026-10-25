@@ -1,5 +1,5 @@
 /* Offline-friendly service worker: network first, cached copy when offline. */
-const CACHE = 'app-v1';
+const CACHE = 'drip-trace-v2';
 self.addEventListener('install', e => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', e => {

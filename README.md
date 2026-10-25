@@ -1,6 +1,14 @@
 # Drip Trace — Our app. Your share. Life-changing prizes.
 
-> **GitHub Pages:** `index.html` at the repo root is an overview page with screenshots (demo data). The real app is the Node.js server (`server.js`) plus the front end in `public/`; it needs the server to run, so it isn't live on Pages. No database, uploads, logs, `.env` or API keys are included; copy `.env.example` (where present) and add your own.
+> **Live app (free, no account):** https://walterhendersonjr41-blip.github.io/drip-trace/
+>
+> The GitHub Pages app (`index.html`, `app.js`, `style.css`, `store.js`) runs entirely in the browser with no server. Reports are signed events (Nostr kind 30078) on free public relays. Your own list and reporting key stay in your browser (localStorage). GPS must be accurate to 150 m and within 150 m of a real gas station, looked up live from OpenStreetMap (Overpass, with `stations.json` as a fallback for Chattanooga / North GA). The map uses OpenStreetMap tiles via Leaflet. The free AI helper and data summary use the keyless Pollinations API. Open data is downloadable as CSV. Add `?ns=test` to the URL to use a separate test area.
+>
+> **Not in the Pages app (needs money, accounts or a legal review):** cash payouts, prize draws/sweepstakes, revenue share, data sales, phone verification and AI photo checks. Those live only in the optional self-hosted Node server described below (`server.js` + `public/`), which needs Stripe, Twilio/SMS, an xAI key and a sweepstakes/legal review before it could run for real. The Pages app says plainly that there are no cash rewards right now.
+>
+> The old project overview page is kept as `index.html.overview.bak` (not published).
+
+## Optional self-hosted server version
 At every fill-up, drivers say whether the pump dripped: no drip, a drop, a few drops, a puddle, overflow, or a nozzle leak. **A drip is an equipment or station issue, never the driver's fault.** The report takes about 10 seconds: the nearest station is picked automatically from GPS, you enter the pump number, choose the size, and snap the nozzle. Grok vision checks the photo, which is then thrown away. "No drip" reports matter as much as drips, because they're needed to calculate drip rates.
 
 It's a sister app to Butt Trace with the same stack: Node/Express, SQLite (sql.js), and a vanilla JS PWA. It runs on port 8788.
