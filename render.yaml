@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: drip-trace
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    disk: {name: data, mountPath: /data, sizeGB: 1}
+    envVars:
+      - {key: DB_PATH, value: /data/data.sqlite}
+      - {key: ADMIN_TOKEN, generateValue: true}
+      - {key: XAI_API_KEY, sync: false}
+      - {key: XAI_VISION_MODEL, value: grok-4}
+      - {key: STRIPE_SECRET_KEY, sync: false}
+      - {key: STRIPE_WEBHOOK_SECRET, sync: false}
+      - {key: BASE_URL, sync: false}
+      - {key: OPERATOR_EMAIL, sync: false}
